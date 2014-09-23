@@ -182,9 +182,9 @@
 ;; Disable truncation in partial-width windows
 (setq truncate-partial-width-windows nil)
 
-;; Set up path
-(setq exec-path (append exec-path '("/opt/local/bin")))
-(setenv "PATH" "$PATH:/opt/local/bin" 't)
+;; Set up path to include /usr/local (e.g., homebrew)
+(setq exec-path (append exec-path '("/usr/local/bin")))
+(setenv "PATH" "$PATH:/usr/local/bin" 't)
 
 ;; Narrowing
 (put 'narrow-to-region 'disabled nil)

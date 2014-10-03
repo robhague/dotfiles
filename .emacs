@@ -1,5 +1,10 @@
 (message "Rob's cross-platform .emacs file")
 
+;; Start relative to home directory
+(setq default-directory "~/")
+(cd "~/")
+(setq inhibit-splash-screen t)
+
 ;; Turn on syntax coloring and font-lock globally
 (cond ((fboundp 'global-font-lock-mode)
 (global-font-lock-mode t)
@@ -17,6 +22,9 @@
 (tool-bar-mode -1)
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier 'none)
+(iswitchb-mode)
+(savehist-mode)
+(auto-save-mode t) ; Disable auto-save
 
 ;; I've finally tired of typing "y-e-s"
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -34,7 +42,8 @@
   (visual-line-mode)
   (variable-pitch-mode)
   (setq tab-width 4)
-  (flyspell-mode))
+  (flyspell-mode)
+  (text-scale-increase 2))
 (add-hook 'text-mode-hook 'my-textmode-hook)
 
 ;; Don't flyspell things that look like code
@@ -186,12 +195,12 @@
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setenv "PATH" "$PATH:/usr/local/bin" 't)
 
-;; Narrowing
+;; Allow narrowing
 (put 'narrow-to-region 'disabled nil)
 
 ;; Save custom variables elsewhere
 (setq custom-file (expand-file-name "~/.emacs.d/custom"))
-(load custom-file)
+(if (file-exists-p custom-file) (load custom-file))
 
 ;; Packages
 (require 'package)

@@ -198,11 +198,13 @@
 ;; Allow narrowing
 (put 'narrow-to-region 'disabled nil)
 
-;; Save custom variables elsewhere
-(setq custom-file (expand-file-name "~/.emacs.d/custom"))
-(if (file-exists-p custom-file) (load custom-file))
-
 ;; Packages
 (require 'package)
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+;; Save custom variables elsewhere
+(setq custom-file (expand-file-name "~/.emacs.d/custom"))
+(if (file-exists-p custom-file) (load custom-file))

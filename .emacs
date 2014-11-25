@@ -96,6 +96,7 @@
 
 ;; I know how big I want my windows to be, dammit!
 (setq-default even-window-heights nil)
+(setq-default split-width-threshold nil)
 
 ;; Uniquify buffer names
 (require 'uniquify)
@@ -163,6 +164,9 @@
 
 ;; ibuffer
 (global-set-key "\C-x\C-b" 'ibuffer-other-window)
+
+;; Bind magit-status to a key
+(global-set-key "\C-x\C-g" 'magit-status)
 
 ;; Set faces
 (setq-default frame-background-mode 'dark)

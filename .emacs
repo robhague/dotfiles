@@ -43,7 +43,7 @@
   (variable-pitch-mode)
   (setq tab-width 4)
   (flyspell-mode)
-  (text-scale-increase 2))
+  (text-scale-increase 1))
 (add-hook 'text-mode-hook 'my-textmode-hook)
 
 ;; Don't flyspell things that look like code

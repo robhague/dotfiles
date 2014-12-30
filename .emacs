@@ -170,7 +170,7 @@
 
 ;; Set faces
 (setq-default frame-background-mode 'dark)
-(set-background-color "gray10")
+(add-to-list 'default-frame-alist '(background-color . "gray10"))
 
 (face-spec-set 'default '((t (:foreground "gray90"))))
 (face-spec-set 'flyspell-incorrect '((t (:underline "#ff4444"))))

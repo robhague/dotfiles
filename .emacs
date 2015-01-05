@@ -173,10 +173,23 @@
 (add-to-list 'default-frame-alist '(background-color . "gray10"))
 
 (face-spec-set 'default '((t (:foreground "gray90"))))
-(face-spec-set 'flyspell-incorrect '((t (:underline "#ff4444"))))
-(face-spec-set 'flyspell-duplicate '((t (:underline "Gold3"))))
+(face-spec-set 'flyspell-incorrect '((t (:underline "#ff4444" :inherit nil))))
+(face-spec-set 'flyspell-duplicate '((t (:underline "Gold3" :inherit nil))))
 
 (face-spec-set 'variable-pitch '((t (:font-family "Helvetica"))))
+(face-spec-set 'fixed-pitch '((t (:family "Monaco"))))
+
+(face-spec-set 'markdown-bold-face '((t (:weight bold))))
+(face-spec-set 'markdown-inline-code-face
+               '((t (:inherit fixed-pitch :height 0.7))))
+(face-spec-set 'markdown-italic-face '((t (:slant italic))))
+(face-spec-set 'markdown-link-face '((t (:foreground "lime green"))))
+(face-spec-set 'markdown-pre-face
+               '((t (:inherit fixed-pitch :foreground "light blue"
+                              :height 0.8))))
+(face-spec-set 'markdown-url-face
+               '((t (:inherit markdown-pre-face :foreground "forest green"))))
+(face-spec-set 'secondary-selection '((t (:background "dark blue"))))
 
 ;; Cursor
 (set-cursor-color "green")

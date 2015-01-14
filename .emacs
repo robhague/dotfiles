@@ -183,10 +183,10 @@
 (face-spec-set 'variable-pitch '((t (:font-family "Helvetica"))))
 (face-spec-set 'fixed-pitch '((t (:family "Monaco"))))
 
-(face-spec-set 'markdown-bold-face '((t (:weight bold))))
+(face-spec-set 'markdown-bold-face '((t (:inherit variable-pitch :weight bold))))
 (face-spec-set 'markdown-inline-code-face
                '((t (:inherit fixed-pitch :height 0.7))))
-(face-spec-set 'markdown-italic-face '((t (:slant italic))))
+(face-spec-set 'markdown-italic-face '((t (:inherit variable-pitch :slant italic))))
 (face-spec-set 'markdown-link-face '((t (:foreground "lime green"))))
 (face-spec-set 'markdown-pre-face
                '((t (:inherit fixed-pitch :foreground "light blue"

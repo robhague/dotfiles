@@ -127,6 +127,15 @@
                                                (buffer-list)))
                                (yes-or-no-p prompt))))
 
+;; A save-and-kill-buffer command
+(defun save-and-kill-buffer ()
+  "Save the current buffer, then kill it"
+  (interactive)
+  (save-buffer)
+  (kill-buffer (current-buffer)))
+
+(global-set-key "\C-xw" 'save-and-kill-buffer)
+
 ;; Vi-style line joining
 (defun join-next-line ()
   "Joins the next line to this one"
@@ -134,6 +143,10 @@
   (next-line)
   (join-line))
 (global-set-key [?\C-\\] 'join-next-line)
+
+;; Capture attempts to enter Vi command mode, with some handy aliases
+(global-set-key "\M-:" 'execute-extended-command)
+(defalias 'wq 'save-and-kill-buffer)
 
 ;; Bind indent-region to something easy to remember
 (global-set-key [C-M-tab] 'indent-region)
@@ -145,15 +158,6 @@
 
 (defun buffer-file-name-interactive () (interactive) (message buffer-file-name))
 (global-set-key "\M-pf" 'buffer-file-name-interactive)
-
-;; A save-and-kill-buffer command
-(defun save-and-kill-buffer ()
-  "Save the current buffer, then kill it"
-  (interactive)
-  (save-buffer)
-  (kill-buffer (current-buffer)))
-
-(global-set-key "\C-xw" 'save-and-kill-buffer)
 
 ;; Server
 (add-hook 'server-visit-hook

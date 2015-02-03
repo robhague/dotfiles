@@ -219,6 +219,11 @@
 ;; Allow narrowing
 (put 'narrow-to-region 'disabled nil)
 
+;; Org-mode configuration
+(setq org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "|" "DONE")))
+(setq org-todo-keyword-faces
+           '(("STARTED" . "yellow") ("WAITING" . "yellow")))
+
 ;; Packages
 (require 'package)
 (add-to-list 'package-archives

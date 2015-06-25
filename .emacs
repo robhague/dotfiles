@@ -22,7 +22,6 @@
 (tool-bar-mode -1)
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier 'none)
-(iswitchb-mode)
 (savehist-mode)
 (auto-save-mode t) ; Disable auto-save
 
@@ -219,10 +218,8 @@
 ;; Allow narrowing
 (put 'narrow-to-region 'disabled nil)
 
-;; Org-mode configuration
-(setq org-todo-keywords '((sequence "TODO" "STARTED" "WAITING" "|" "DONE")))
-(setq org-todo-keyword-faces
-           '(("STARTED" . "yellow") ("WAITING" . "yellow")))
+;; Trailing whitespace is rarely, if ever useful
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Packages
 (require 'package)

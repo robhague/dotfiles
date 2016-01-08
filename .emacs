@@ -158,6 +158,13 @@
 (defun buffer-file-name-interactive () (interactive) (message buffer-file-name))
 (global-set-key "\M-pf" 'buffer-file-name-interactive)
 
+;; Use Mac-like binding for various commands (save, yank/paste, copy, undo)
+;; You can have my M-x when you take it from my cold, dead hands
+(global-set-key "\M-s" 'save-buffer)
+(global-set-key "\M-v" 'yank) ;; was scroll-down-command
+(global-set-key "\M-c" 'kill-ring-save) ;; was capitalize-word
+(global-set-key "\M-z" 'undo) ;; was zap-to-char
+
 ;; Server
 (add-hook 'server-visit-hook
           (lambda nil
@@ -199,11 +206,11 @@
 (setq-default cursor-type 'bar)
 (face-spec-set 'show-paren-match '((t (:background "dark green"))))
 
-(set-display-table-slot standard-display-table  
-'vertical-border  
-(let* ((face 'mode-line)  
-       (face-offset (lsh (face-id face) 19)))  
-  (+ face-offset ?|)))  
+(set-display-table-slot standard-display-table
+'vertical-border
+(let* ((face 'mode-line)
+       (face-offset (lsh (face-id face) 19)))
+  (+ face-offset ?|)))
 
 ;; This must be done AFTER setting faces, in order to pick up cursor
 ;; colour.

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<!-- A LaunchAgent specification to run a Jupyter kernel for my Notebooks
+     directory, listening on port 1984. To run at login, copy or symlink
+     into ~/Library/LaunchAgents (having configured the directory to your
+     liking).
+-->
+
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+	<string>org.jupyter.notebook</string>
+    <key>ProgramArguments</key>
+	<array>
+          <string>/bin/bash</string>
+          <string>-c</string>
+          <string>-l</string>
+	  <string>/usr/local/bin/jupyter-notebook --port 1984 --no-browser</string>
+	</array>
+    <key>WorkingDirectory</key>
+    <string>/Users/rob/Documents/Notebooks</string>
+    <key>RunAtLoad</key>
+	<true/>
+    <key>KeepAlive</key>
+	<true/>
+</dict>
+</plist>

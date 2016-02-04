@@ -64,6 +64,13 @@
 
 (setq flyspell-generic-check-word-predicate 'my-flyspell-check-word-p)
 
+;; Enable flyspell in comments
+(defun my-prog-mode-hook () (flyspell-prog-mode))
+(add-hook 'prog-mode-hook 'my-prog-mode-hook)
+
+;; Fix behaviour
+(setq ispell-dictionary "en_GB")
+
 ;; A command for inserting the date in RFC822-compliant form
 (defun insert-date()
   (interactive)

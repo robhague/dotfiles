@@ -1,0 +1,14 @@
+# General-purpose (as opposed to site-specific) Git configuration
+#
+# To use, add something like the following to your global .gitconfig:
+#
+#    [include]
+#      path = dotfiles/gitconfig
+
+# Useful aliases
+
+# Submodule handling
+[status]
+	submodulesummary = 1
+[diff]
+	submodule = log

@@ -71,6 +71,9 @@
 ;; Fix behaviour
 (setq ispell-dictionary "en_GB")
 
+;; Programming language hooks
+(add-hook 'js-mode-hook 'flycheck-mode)
+
 ;; A command for inserting the date in RFC822-compliant form
 (defun insert-date()
   (interactive)

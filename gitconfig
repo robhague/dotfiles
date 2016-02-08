@@ -6,9 +6,17 @@
 #      path = dotfiles/gitconfig
 
 # Useful aliases
+[alias]
+  update = !git pull && git submodule update
+  tidymerged = !git checkout master && git update && (git branch --merged | grep -v ^* | xargs git branch -d)
+  diffw = diff --word-diff
 
 # Submodule handling
 [status]
 	submodulesummary = 1
 [diff]
 	submodule = log
+
+# Accept new push behaviour
+[push]
+	default = simple

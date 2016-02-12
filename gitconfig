@@ -10,6 +10,11 @@
   update = !git pull && git submodule update
   tidymerged = !git checkout master && git update && (git branch --merged | grep -v ^* | xargs git branch -d)
   diffw = diff --word-diff
+  branchname = !git branch --no-color | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'
+  pushup = !git push -u origin $(git branchname)
+
+  # Assumes git protocol with the username "git", and a GitHub-like relationship with the HTTPS URL
+  browse = !open $(git remote -v | head -n 1 | sed 's/^.*@\\([^:]*\\):\\(.*\\).git.*$/https:\\/\\/\\1\\/\\2/')
 
 # Submodule handling
 [status]

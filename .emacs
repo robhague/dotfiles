@@ -17,6 +17,9 @@
 ;; And don't clutter up the place with backup files
 (setq-default make-backup-files nil)
 
+;; Keep up with external file changes (e.g., git pull)
+(global-auto-revert-mode)
+
 ;; HCI for Masochists
 (menu-bar-mode -1)
 (tool-bar-mode -1)

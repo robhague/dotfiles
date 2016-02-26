@@ -11,6 +11,18 @@ function pathadd {
     PATH=$1${PATH//:$1/}
 }
 
+# VirtualEnv Control
+
+VIRTUAL_ENV_DIR=$HOME/VirtualEnvs
+
+function venv {
+    source $HOME/VirtualEnvs/$1/bin/activate
+}
+function _venv {
+    COMPREPLY=( $(compgen -W "$(ls $VIRTUAL_ENV_DIR)" -- $2 ) );
+}
+complete -F _venv venv
+
 # Prompt
 function describe_cwd {
     echo ${PWD##*/}

@@ -76,6 +76,7 @@
 
 ;; Programming language hooks
 (add-hook 'js-mode-hook 'flycheck-mode)
+(add-hook 'web-mode-hook 'flycheck-mode)
 
 ;; A command for inserting the date in RFC822-compliant form
 (defun insert-date()
@@ -247,6 +248,9 @@
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+(eval-after-load 'flycheck
+  '(flycheck-add-mode 'javascript-eslint 'web-mode))
 
 ;; Save custom variables elsewhere
 (setq custom-file (expand-file-name "~/.emacs.d/custom"))

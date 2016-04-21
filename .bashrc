@@ -11,6 +11,11 @@ function pathadd {
     PATH=$1${PATH//:$1/}
 }
 
+function envpass {
+    read -s $1
+    export $1
+}
+
 # VirtualEnv Control
 
 VIRTUAL_ENV_DIR=$HOME/VirtualEnvs

@@ -107,6 +107,11 @@
 (global-set-key [?\C-x up] 'windmove-up)
 (global-set-key [?\C-x down] 'windmove-down)
 
+;; Experimental bindings for other-window
+(global-set-key [C-tab] 'other-window)
+(global-set-key [?\M-o] 'other-window)
+
+
 ;; I know how big I want my windows to be, dammit!
 (setq-default even-window-heights nil)
 (setq-default split-width-threshold nil)
@@ -192,43 +197,6 @@
 ;; Bind magit-status to a key
 (global-set-key "\C-x\C-g" 'magit-status)
 
-;; Set faces
-(setq-default frame-background-mode 'dark)
-(add-to-list 'default-frame-alist '(background-color . "gray10"))
-
-(face-spec-set 'default '((t (:foreground "gray90"))))
-(face-spec-set 'flyspell-incorrect '((t (:underline "#ff4444" :inherit nil))))
-(face-spec-set 'flyspell-duplicate '((t (:underline "Gold3" :inherit nil))))
-
-(face-spec-set 'variable-pitch '((t (:font-family "Helvetica"))))
-(face-spec-set 'fixed-pitch '((t (:family "Monaco"))))
-
-(face-spec-set 'markdown-bold-face '((t (:inherit variable-pitch :weight bold))))
-(face-spec-set 'markdown-inline-code-face
-               '((t (:inherit fixed-pitch :height 0.7))))
-(face-spec-set 'markdown-italic-face '((t (:inherit variable-pitch :slant italic))))
-(face-spec-set 'markdown-link-face '((t (:foreground "lime green"))))
-(face-spec-set 'markdown-pre-face
-               '((t (:inherit fixed-pitch :foreground "light blue"
-                              :height 0.8))))
-(face-spec-set 'markdown-url-face
-               '((t (:inherit markdown-pre-face :foreground "forest green"))))
-(face-spec-set 'secondary-selection '((t (:background "dark blue"))))
-
-;; Cursor
-(set-cursor-color "green")
-(setq-default cursor-type 'bar)
-(face-spec-set 'show-paren-match '((t (:background "dark green"))))
-
-(set-display-table-slot standard-display-table
-'vertical-border
-(let* ((face 'mode-line)
-       (face-offset (lsh (face-id face) 19)))
-  (+ face-offset ?|)))
-
-;; This must be done AFTER setting faces, in order to pick up cursor
-;; colour.
-
 ;; Disable truncation in partial-width windows
 (setq truncate-partial-width-windows nil)
 
@@ -251,6 +219,9 @@
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 (eval-after-load 'flycheck
   '(flycheck-add-mode 'javascript-eslint 'web-mode))
+
+;; Required for themes to work in customization
+(package-initialize)
 
 ;; Save custom variables elsewhere
 (setq custom-file (expand-file-name "~/.emacs.d/custom"))

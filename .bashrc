@@ -69,7 +69,6 @@ function virtual_env_prompt {
     fi
 }
 PS1="\
-\033]0;\$(describe_cwd)\007\
 \[\e[33m\]\t \
 \[\e[31m\]\$(last_exit_prompt)\
 \[\e[35m\]$(describe_host)\
@@ -77,6 +76,7 @@ PS1="\
 \$(git_branch_prompt)\
 \[\e[31m\]\$(git_dot)\
 \[\e[36m\]\w \n\$ \[\e[m\]\
+\033]0;\$(describe_cwd)\007\
 "
 export PS1
 export VIRTUAL_ENV_DISABLE_PROMPT=1

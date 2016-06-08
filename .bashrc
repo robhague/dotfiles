@@ -29,6 +29,13 @@ function _venv {
 complete -F _venv venv
 
 # Prompt
+function describe_host {
+    if [ "$SSH_CONNECTION" ]
+    then
+        echo "\h "
+    fi
+}
+
 function describe_cwd {
     echo ${PWD##*/}
 }
@@ -54,13 +61,18 @@ function git_dot {
 function virtual_env_prompt {
     if [ $VIRTUAL_ENV ]
     then
-        echo "Python:$(basename $VIRTUAL_ENV) "
+        local BASENAME=$(basename $VIRTUAL_ENV)
+        if [ $BASENAME != "default" ]
+        then
+            echo "Python:$BASENAME "
+        fi
     fi
 }
 PS1="\
 \033]0;\$(describe_cwd)\007\
 \[\e[33m\]\t \
 \[\e[31m\]\$(last_exit_prompt)\
+\[\e[35m\]$(describe_host)\
 \[\e[32m\]\$(virtual_env_prompt)\
 \$(git_branch_prompt)\
 \[\e[31m\]\$(git_dot)\

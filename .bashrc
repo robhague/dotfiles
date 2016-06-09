@@ -75,9 +75,9 @@ PS1="\
 \[\e[32m\]\$(virtual_env_prompt)\
 \$(git_branch_prompt)\
 \[\e[31m\]\$(git_dot)\
-\[\e[36m\]\w \n\$ \[\e[m\]\
+\[\e[36m\]\w \
 \033]0;\$(describe_cwd)\007\
-"
+\n\$ \[\e[m\]"
 export PS1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 

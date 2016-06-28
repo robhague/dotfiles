@@ -6,7 +6,6 @@ My configuration files for various applications. I clone this repository on to e
 
 The `.emacs` file is self-contained; complex packages are assumed to be handled separately by the packaging system. Notable features:
 
-* The general look is light-on-dark. I don't use a theme.
 * Text mode (and derivatives such as markdown-mode) use variable pitch and visual line modes to provide a more word processor like environment for editing text. They also enable flyspell by default, with a custom word identification function that skips things that lookLikeCode.
 * The server is started on launch.
 * Meta is the command key, plus Mac-like bindings for M-c, M-v, M-z and M-s. You can take my M-x when you pry it from my cold, dead hands.

@@ -84,6 +84,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Command Completion
 source_if_present ~/.git-completion.bash
 
+# Disable El Capitan per-session history
+export SHELL_SESSION_HISTORY=0
+
 # Path
 pathadd ~/scripts
 pathadd ~/bin

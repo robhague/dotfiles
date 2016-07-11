@@ -25,3 +25,7 @@
 # Accept new push behaviour
 [push]
 	default = simple
+
+# Global exclude file
+[core]
+	excludesfile = ~/.gitignore

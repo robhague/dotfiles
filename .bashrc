@@ -87,6 +87,7 @@ source_if_present ~/.git-completion.bash
 # Path
 pathadd ~/scripts
 pathadd ~/bin
+pathadd ./node_modules/.bin/
 export PATH
 
 # Source local config

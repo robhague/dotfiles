@@ -21,14 +21,24 @@
 (global-auto-revert-mode)
 
 ;; HCI for Masochists
-(if (not (and (eq system-type 'darwin) (display-graphic-p)))
-    (menu-bar-mode -1))
-
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier 'none)
 (savehist-mode)
 (auto-save-mode t) ; Disable auto-save
+
+; See http://stackoverflow.com/questions/24956521
+(when (and (eq system-type 'darwin) (display-graphic-p))
+  (defun contextual-menubar (&optional frame)
+    "Display the menubar in FRAME (default: selected frame) if on a
+graphical display, but hide it if in terminal."
+    (interactive)
+    (set-frame-parameter frame 'menu-bar-lines
+                         (if (display-graphic-p frame) 1 0)))
+  (add-hook 'after-init-hook 'contextual-menubar)
+  (add-hook 'after-make-frame-functions 'contextual-menubar))
+
 
 ;; I've finally tired of typing "y-e-s"
 (defalias 'yes-or-no-p 'y-or-n-p)

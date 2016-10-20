@@ -223,6 +223,10 @@
 ;; Required for themes to work in customization
 (package-initialize)
 
+;; Run local config
+(setq local-config-file (expand-file-name "local.el" user-emacs-directory))
+(if (file-exists-p local-config-file) (load local-config-file))
+
 ;; Save custom variables elsewhere
-(setq custom-file (expand-file-name "~/.emacs.d/custom"))
+(setq custom-file (expand-file-name (expand-file-name "custom" user-emacs-directory)))
 (if (file-exists-p custom-file) (load custom-file))

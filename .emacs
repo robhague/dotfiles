@@ -21,7 +21,7 @@
 (global-auto-revert-mode)
 
 ;; HCI for Masochists
-(menu-bar-mode -1)
+(if (not (eq system-type 'darwin)) (menu-bar-mode -1))
 (tool-bar-mode -1)
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier 'none)

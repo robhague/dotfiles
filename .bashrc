@@ -36,8 +36,11 @@ function describe_host {
     fi
 }
 
-function describe_cwd {
-    echo ${PWD##*/}
+function describe_cwd_title {
+    if [ ! $INSIDE_EMACS ]
+    then
+        echo -e "\033]0;${PWD##*/}\007"
+    fi
 }
 function last_exit_prompt {
     STATUS=$?
@@ -76,8 +79,9 @@ PS1="\
 \$(git_branch_prompt)\
 \[\e[31m\]\$(git_dot)\
 \[\e[36m\]\w \
-\033]0;\$(describe_cwd)\007\
+\$(describe_cwd_title)\
 \n\$ \[\e[m\]"
+
 export PS1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 

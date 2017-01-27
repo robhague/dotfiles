@@ -83,6 +83,9 @@ graphical display, but hide it if in terminal."
 (defun my-prog-mode-hook () (flyspell-prog-mode))
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
 
+;; Follow the compilation output
+(setq compilation-scroll-output t)
+
 ;; Fix behaviour
 (setq ispell-dictionary "en_GB")
 

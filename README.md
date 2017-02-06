@@ -24,6 +24,19 @@ The `.bashrc` isn't all that complicated, but contains a few useful snippets:
 
 I've not put too much effort into portability, but it works for me on both OS X and Linux.
 
+## gitconfig
+
+Some general-purpose Git aliases and preferences. The aliases are:
+
+* `update`: Pull, and then update submodules
+* `tidymerged`: Checks out master, updates (as above), then delete any local branches that have been merged into master
+* `diffw`: Simple shortcut for word difference
+* `branchname`: Print the name of the current branch
+* `pushup`: Push to origin, setting the upstream branch name to match the local one
+* `browse`: Browse the current repo's web page, assuming that it has a more-or-less Github-like setup and there's a command called `open` that can handle URLs (as there is on macOS)
+
+Yes, I use submoudles.
+
 ## org.jupyter.notebook.plist
 
 A simple `launchd` configuration to start a [Jupyter](http://jupyter.org) notebook server at login. To use, copy or symlink it to `~/Library/LaunchAgents`, and modify the directory to match your local setup.

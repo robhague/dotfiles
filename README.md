@@ -37,6 +37,20 @@ Some general-purpose Git aliases and preferences. The aliases are:
 
 Yes, I use submoudles.
 
+In addition, the file specifies a filer for Jupyter/IPython notebooks, as described in [this blog post](http://pascalbugnion.net/blog/ipython-notebooks-and-git.html). My version will by default erase execution counts but leave output intact, but this behaviour can be configured by modifying the notebook metadata. For example:
+
+    # Erase both execution count and output
+    "git": { "clean": { "execution_counts": true, "output": true } }
+
+    # Leave the file unmodified
+    "git": { "clean": false }
+
+Note that the filter assumes you've installed this repository as `~/dotfiles`.
+
+## gitattributes
+
+Specifies that the above filter should be used for files matching `*.ipynb`. This can be linked to `.gitattributes` in your repository, or `.config/git/attributes` to apply globally.
+
 ## org.jupyter.notebook.plist
 
 A simple `launchd` configuration to start a [Jupyter](http://jupyter.org) notebook server at login. To use, copy or symlink it to `~/Library/LaunchAgents`, and modify the directory to match your local setup.

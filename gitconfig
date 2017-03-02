@@ -29,3 +29,8 @@
 # Global exclude file
 [core]
 	excludesfile = ~/.gitignore
+
+# Filters
+[filter "nbclean"]
+	clean = ~/dotfiles/nbclean.py
+	smudge = cat

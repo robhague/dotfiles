@@ -30,9 +30,15 @@ def strip_output_from_cell(cell):
                 output["execution_count"] = None
     if clean_execution_count and "execution_count" in cell:
         cell["execution_count"] = None
+    return cell
 
+newcells = []
 for cell in json_in.get("cells", []):
-    strip_output_from_cell(cell)
+    metadata = cell.get('metadata', {}).get('git', {})
+    if metadata.get('stop', False):
+        break
+    newcells.append(strip_output_from_cell(cell))
+json_in["cells"] = newcells
 
 json.dump(json_in, sys.stdout, sort_keys=True, indent=1, separators=(",",": "),
           ensure_ascii=False)

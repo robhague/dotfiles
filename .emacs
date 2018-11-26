@@ -19,6 +19,7 @@
 
 ;; Keep up with external file changes (e.g., git pull)
 (global-auto-revert-mode)
+(setq-default auto-revert-remote-files t)
 
 ;; HCI for Masochists
 (menu-bar-mode -1)
@@ -57,8 +58,15 @@ graphical display, but hide it if in terminal."
   (variable-pitch-mode)
   (setq tab-width 4)
   (flyspell-mode)
-  (text-scale-increase 1))
+  (text-scale-set 1))
 (add-hook 'text-mode-hook 'my-textmode-hook)
+
+(defun ugly-textmode-hook ()
+  "Turn off variable pitch mode where not appropriate"
+  (variable-pitch-mode 0)
+  (text-scale-set 0))
+(add-hook 'yaml-mode-hook 'ugly-textmode-hook)
+
 
 ;; Don't flyspell things that look like code
 (defun string-match-case-sensitive (regexp string)
@@ -148,6 +156,13 @@ graphical display, but hide it if in terminal."
 
 ;; Bind something to compile
 (global-set-key "\C-xc" 'compile)
+
+
+(defun compile-immediately () (interactive)
+       (progn
+         (save-buffer)
+         (compile compile-command)))
+(global-set-key (kbd "M-RET") 'compile-immediately)
 
 ;; Easy kill-this-buffer
 (global-set-key "\C-x\M-k" 'kill-this-buffer)

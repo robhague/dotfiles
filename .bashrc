@@ -20,13 +20,20 @@ function envpass {
 
 VIRTUAL_ENV_DIR=$HOME/VirtualEnvs
 
-function venv {
+function rgh_venv {
     source $HOME/VirtualEnvs/$1/bin/activate
 }
-function _venv {
+function _rgh_venv {
     COMPREPLY=( $(compgen -W "$(ls $VIRTUAL_ENV_DIR)" -- $2 ) );
 }
-complete -F _venv venv
+complete -F _rgh_venv rgh_venv
+
+# General completion
+
+function _ssh {
+    COMPREPLY=( $(compgen -W "$( grep "^Host" ~/.ssh/config | grep -v '[?*]' | cut -d ' ' -f 2- )" -- $2 ) );
+}
+complete -F _ssh ssh
 
 # Prompt
 function describe_host {
@@ -62,13 +69,13 @@ function git_dot {
 }
 
 function virtual_env_prompt {
-    if [ $VIRTUAL_ENV ]
+    if [ $PIPENV_ACTIVE ]
+    then
+       echo "PipEnv "
+    elif [ $VIRTUAL_ENV ]
     then
         local BASENAME=$(basename $VIRTUAL_ENV)
-        if [ $BASENAME != "default" ]
-        then
-            echo "Python:$BASENAME "
-        fi
+        echo "Python:$BASENAME "
     fi
 }
 PS1="\
@@ -90,6 +97,9 @@ source_if_present ~/.git-completion.bash
 
 # Disable El Capitan per-session history
 export SHELL_SESSION_HISTORY=0
+
+# Skip commands prefixed with a space
+export HISTCONTROL=ignorespace
 
 # Path
 pathadd ~/scripts

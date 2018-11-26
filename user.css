@@ -1,0 +1,9 @@
+/*
+ * Fix the page width in Confluence
+ */
+
+body#com-atlassian-confluence #wysiwyg,
+#confluence-ui .wiki-content {
+    max-width: 960px;
+    margin: auto !important;
+}

@@ -31,6 +31,6 @@
 	excludesfile = ~/.gitignore
 
 # Filters
-[filter "nbclean"]
-	clean = ~/dotfiles/nbclean.py
-	smudge = cat
+#[filter "nbclean"]
+#	clean = ~/dotfiles/nbclean.py
+#	smudge = cat

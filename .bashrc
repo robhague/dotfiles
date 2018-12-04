@@ -16,18 +16,6 @@ function envpass {
     export $1
 }
 
-# VirtualEnv Control
-
-VIRTUAL_ENV_DIR=$HOME/VirtualEnvs
-
-function rgh_venv {
-    source $HOME/VirtualEnvs/$1/bin/activate
-}
-function _rgh_venv {
-    COMPREPLY=( $(compgen -W "$(ls $VIRTUAL_ENV_DIR)" -- $2 ) );
-}
-complete -F _rgh_venv rgh_venv
-
 # General completion
 
 function _ssh {
@@ -75,7 +63,7 @@ function virtual_env_prompt {
     elif [ $VIRTUAL_ENV ]
     then
         local BASENAME=$(basename $VIRTUAL_ENV)
-        echo "Python:$BASENAME "
+        echo "Py:$BASENAME "
     fi
 }
 PS1="\

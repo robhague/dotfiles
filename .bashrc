@@ -66,10 +66,19 @@ function virtual_env_prompt {
         echo "Py:$BASENAME "
     fi
 }
+
+function aws_vault_prompt {
+    if [ $AWS_VAULT ]
+    then
+       echo "AWS:$AWS_VAULT "
+    fi
+}
+
 PS1="\
 \[\e[33m\]\t \
 \[\e[31m\]\$(last_exit_prompt)\
 \[\e[35m\]$(describe_host)\
+\[\e[34m\]\$(aws_vault_prompt)\
 \[\e[32m\]\$(virtual_env_prompt)\
 \$(git_branch_prompt)\
 \[\e[31m\]\$(git_dot)\

@@ -230,9 +230,9 @@ graphical display, but hide it if in terminal."
 ;; Disable truncation in partial-width windows
 (setq truncate-partial-width-windows nil)
 
-;; Set up path to include /usr/local (e.g., homebrew)
-(setq exec-path (append exec-path '("/usr/local/bin")))
-(setenv "PATH" "$PATH:/usr/local/bin" 't)
+;; Set up path to include /usr/local (e.g., homebrew) and pyenv
+(setq exec-path (append '("~/.pyenv/shims") exec-path '("/usr/local/bin")))
+(setenv "PATH" "~/.pyenv/shims:$PATH:/usr/local/bin" 't)
 
 ;; Allow narrowing
 (put 'narrow-to-region 'disabled nil)

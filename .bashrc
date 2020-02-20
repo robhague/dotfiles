@@ -82,7 +82,7 @@ PS1="\
 \[\e[32m\]\$(virtual_env_prompt)\
 \$(git_branch_prompt)\
 \[\e[31m\]\$(git_dot)\
-\[\e[36m\]\w \
+\[\e[36m\]\$(dirs) \
 \$(describe_cwd_title)\
 \n\$ \[\e[m\]"
 

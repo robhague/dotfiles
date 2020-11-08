@@ -240,6 +240,12 @@ graphical display, but hide it if in terminal."
 ;; Trailing whitespace is rarely, if ever useful
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Save backups somewhere sensible
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;; Packages
 (require 'package)
 (add-to-list 'package-archives

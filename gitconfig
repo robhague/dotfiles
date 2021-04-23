@@ -14,7 +14,7 @@
   pushup = !git push -u origin $(git branchname)
 
   # Assumes git protocol with the username "git", and a GitHub-like relationship with the HTTPS URL
-  browse = !open $(git remote -v | head -n 1 | sed 's/^.*@\\([^:]*\\):\\(.*\\).git.*$/https:\\/\\/\\1\\/\\2/')/tree/$(git branchname)
+  browse = !open $(git remote -v | head -n 1 | sed 's/^.*@\\([^:]*\\):\\(.*\\).git.*$/https:\\/\\/\\1\\/\\2/')/tree/$(git branchname)/$GIT_PREFIX
 
 # Submodule handling
 [status]

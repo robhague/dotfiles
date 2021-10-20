@@ -74,6 +74,21 @@ function aws_vault_prompt {
     fi
 }
 
+function ensure_cwd {
+    # If the working directory doesn't exist, try and find one that does
+    if [ ! -d $PWD ]
+    then
+        echo "$PWD no longer exists"
+        D=$PWD
+        while [[ $D && ! -d $D && $D = */* ]]
+        do
+            D=${D%/*}
+        done
+        cd $D
+        echo "Moved to $PWD"
+    fi
+}
+
 PS1="\
 \[\e[33m\]\t \
 \[\e[31m\]\$(last_exit_prompt)\
@@ -106,3 +121,8 @@ export PATH
 
 # Source local config
 source_if_present ~/.bashrc.local
+
+if [[ ! $PROMPT_COMMAND == *ensure_cwd* ]]
+then
+    export PROMPT_COMMAND="ensure_cwd;$PROMPT_COMMAND"
+fi

@@ -76,10 +76,10 @@ function aws_vault_prompt {
 
 function ensure_cwd {
     # If the working directory doesn't exist, try and find one that does
-    if [ ! -d $PWD ]
+    if [ ! -d "$PWD" ]
     then
         echo "$PWD no longer exists"
-        D=$PWD
+        D="$PWD"
         while [[ $D && ! -d $D && $D = */* ]]
         do
             D=${D%/*}

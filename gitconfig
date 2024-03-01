@@ -8,7 +8,7 @@
 # Useful aliases
 [alias]
   update = !git pull && git submodule update
-  tidymerged = !git checkout master && git update && (git branch --merged | grep -v ^* | xargs git branch -d)
+  tidymerged = !(git checkout master || git checkout main) && git update && (git branch --merged | grep -v ^* | xargs git branch -d)
   diffw = diff --word-diff
   branchname = !git branch --no-color | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'
   pushup = !git push -u origin $(git branchname)

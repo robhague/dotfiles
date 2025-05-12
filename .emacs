@@ -58,7 +58,8 @@ graphical display, but hide it if in terminal."
   (variable-pitch-mode)
   (setq tab-width 4)
   (flyspell-mode)
-  (text-scale-set 1))
+  (text-scale-set 1)
+  )
 (add-hook 'text-mode-hook 'my-textmode-hook)
 
 (defun ugly-textmode-hook ()
@@ -154,6 +155,9 @@ graphical display, but hide it if in terminal."
 (global-unset-key "\C-z")
 (global-unset-key "\C-\\")
 
+;; Bind C-z to undo, to make life easier in contexts without a Meta key
+(global-set-key "\C-z" 'undo)
+
 ;; Bind something to compile
 (global-set-key "\C-xc" 'compile)
 
@@ -166,6 +170,20 @@ graphical display, but hide it if in terminal."
 
 ;; Easy kill-this-buffer
 (global-set-key "\C-x\M-k" 'kill-this-buffer)
+
+;; Evaluate lisp in place; see https://emacsredux.com/blog/2013/06/21/eval-and-replace/
+;; Could be replaced with the crux package https://github.com/bbatsov/crux
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
 
 ;; Confirm leaving emacs...
 (setq confirm-kill-emacs (lambda (prompt)

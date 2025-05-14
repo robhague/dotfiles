@@ -275,6 +275,10 @@ graphical display, but hide it if in terminal."
 (eval-after-load 'flycheck
   '(flycheck-add-mode 'javascript-eslint 'web-mode))
 
+(use-package vterm
+    :ensure t
+    :bind (:map vterm-mode-map ("M-v" . vterm-yank)))
+
 ;; Required for themes to work in customization
 (package-initialize)
 

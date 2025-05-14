@@ -55,10 +55,11 @@ graphical display, but hide it if in terminal."
 ;; Use visual lines and flyspell for Text mode
 (defun my-textmode-hook () "Nice word-processing features"
   (visual-line-mode)
-  (variable-pitch-mode)
   (setq tab-width 4)
   (flyspell-mode)
-  (text-scale-set 1)
+  ;; I'm trying out a more plain-text approach
+  ;;(variable-pitch-mode)
+  ;;(text-scale-set 1)
   )
 (add-hook 'text-mode-hook 'my-textmode-hook)
 

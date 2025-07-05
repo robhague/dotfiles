@@ -16,7 +16,8 @@
 ;; Syntax highlighting
 (defvar timetrack-font-lock-keywords
   '(("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]" . font-lock-keyword-face)
-    ("[0-9][0-9]:[0-9][0-9]" . font-lock-string-face))
+    ("[0-9][0-9]:[0-9][0-9]" . font-lock-string-face)
+    ("#[-[:alnum:]]+" . font-lock-constant-face))
     "Syntax highlighting for `timetrack-mode'.")
 
 ;; The mode itself

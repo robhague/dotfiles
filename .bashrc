@@ -121,6 +121,7 @@ export PATH
 
 # Source local config
 source_if_present ~/.bashrc.local
+source_if_present "$HOME/.local/bin/env"
 
 if [[ ! $PROMPT_COMMAND == *ensure_cwd* ]]
 then

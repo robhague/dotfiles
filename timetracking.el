@@ -4,7 +4,7 @@
   (interactive)
   (end-of-buffer)
   (newline)
-  (insert (format-time-string "%Y-%m-%d %H:%M") " - "))
+  (insert (format-time-string "%Y-%m-%d %H:%M ")))
 
 ;; Define the keymap
 (defvar timetrack-mode-map

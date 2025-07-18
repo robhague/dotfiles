@@ -1,10 +1,20 @@
 ;; A major mode for tracking time spent
 
+(defun lastline-p () (= (line-number-at-pos (point))
+                        (line-number-at-pos (point-max))))
+
 (defun timetrack-newline ()
   (interactive)
-  (end-of-buffer)
-  (newline)
-  (insert (format-time-string "%Y-%m-%d %H:%M ")))
+  ;; If we're not on the last line, use the current line as a template
+  (delete-trailing-whitespace (point) nil)
+  (let ((default-task (if (lastline-p) ""
+                        (buffer-substring (+ (line-beginning-position) 17)
+                                          (line-end-position)))))
+
+    ;; Move to the end of the file and add a new line
+    (end-of-buffer)
+    (newline)
+    (insert (format-time-string "%Y-%m-%d %H:%M ") default-task)))
 
 ;; Define the keymap
 (defvar timetrack-mode-map

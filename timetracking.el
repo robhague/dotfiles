@@ -1,12 +1,22 @@
 ;; A major mode for tracking time spent
 
-(defun lastline-p () (= (line-number-at-pos (point))
-                        (line-number-at-pos (point-max))))
+(defun lastline-p ()
+  "True if the point is on the last line of the buffer"
+  (= (line-number-at-pos (point))
+     (line-number-at-pos (point-max))))
+
+(defun trim-blank-lines ()
+  "Remove all blank lines from the end of the buffer"
+  (save-excursion
+    (end-of-buffer)
+    (re-search-backward "[^[:blank:][:cntrl:]]")
+    (forward-char)
+    (delete-region (point) (point-max))))
 
 (defun timetrack-newline ()
   (interactive)
+  (trim-blank-lines)
   ;; If we're not on the last line, use the current line as a template
-  (delete-trailing-whitespace (point) nil)
   (let ((default-task (if (lastline-p) ""
                         (buffer-substring (+ (line-beginning-position) 17)
                                           (line-end-position)))))

@@ -281,6 +281,17 @@ graphical display, but hide it if in terminal."
     :ensure t
     :bind (:map vterm-mode-map ("M-v" . vterm-yank)))
 
+;; LSP for Python
+;; See https://blog.serghei.pl/posts/emacs-python-ide/
+
+(defun rgh-eglot-setup ()
+  "Set up Eglot and use Rassumfrassum as the LSP server"
+  (eglot-ensure)
+  (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))
+  (add-to-list 'eglot-server-programs
+               '((python-ts-mode python-mode)
+                 . ("rass" "--" "ty" "server" "--" "ruff" "server"))))
+
 ;; Required for themes to work in customization
 (package-initialize)
 

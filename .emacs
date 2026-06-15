@@ -292,6 +292,9 @@ graphical display, but hide it if in terminal."
                '((python-ts-mode python-mode)
                  . ("rass" "--" "ty" "server" "--" "ruff" "server"))))
 
+(add-hook 'python-mode-hook 'rgh-eglot-setup)
+(add-hook 'python-mode-hook 'company-mode)
+
 ;; Required for themes to work in customization
 (package-initialize)
 

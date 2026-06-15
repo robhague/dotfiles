@@ -27,7 +27,6 @@
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier 'none)
 (savehist-mode)
-(auto-save-mode t) ; Disable auto-save
 
 ; See http://stackoverflow.com/questions/24956521
 (when (and (eq system-type 'darwin) (display-graphic-p))
@@ -159,14 +158,14 @@ graphical display, but hide it if in terminal."
 ;; Bind C-z to undo, to make life easier in contexts without a Meta key
 (global-set-key "\C-z" 'undo)
 
-;; Bind something to compile
-(global-set-key "\C-xc" 'compile)
+;; Bind something to project-compile
+(global-set-key "\C-xc" 'project-compile)
 
 
 (defun compile-immediately () (interactive)
        (progn
          (save-buffer)
-         (compile compile-command)))
+         (project-compile compile-command)))
 (global-set-key (kbd "M-RET") 'compile-immediately)
 
 ;; Easy kill-this-buffer
@@ -233,6 +232,9 @@ graphical display, but hide it if in terminal."
 (global-set-key "\M-c" 'kill-ring-save) ;; was capitalize-word
 (global-set-key "\M-z" 'undo) ;; was zap-to-char
 
+;; Similarly, bind Cmd-H to Hide, as  I don't use the Emacs default (mark-paragraph)
+(global-set-key "\M-h" 'ns-do-hide-emacs)
+
 ;; Server
 (add-hook 'server-visit-hook
           (lambda nil
@@ -250,8 +252,8 @@ graphical display, but hide it if in terminal."
 (setq truncate-partial-width-windows nil)
 
 ;; Set up path to include /usr/local (e.g., homebrew) and pyenv
-(setq exec-path (append '("~/.pyenv/shims") exec-path '("/usr/local/bin")))
-(setenv "PATH" "~/.pyenv/shims:$PATH:/usr/local/bin" 't)
+(setq exec-path (append '("~/.local/bin") '("~/.pyenv/shims") exec-path '("/usr/local/bin")))
+(setenv "PATH" "~/.local/bin:~/.pyenv/shims:$PATH:/usr/local/bin" 't)
 
 ;; Allow narrowing
 (put 'narrow-to-region 'disabled nil)

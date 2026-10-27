@@ -1,3 +1,5 @@
+;;; ...  -*- lexical-binding: t -*-
+
 (message "Rob's cross-platform .emacs file")
 
 ;; Start relative to home directory
